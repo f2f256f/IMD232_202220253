@@ -1,6 +1,32 @@
+// function setup() {
+//   setCanvasContainer('canvas-goes-here', 800, 500, true);
+//   background(192, 192, 192);
+// }
+
+// function setup() {
+//   let canvas;
+//   canvas = createCanvas(960, 630, true);
+//   let canvasParent;
+//   canvasParent = select('#canvas-goes-here');
+//   canvas.parent(canvasParent);
+//   drawInitialContent();
+//   background(192, 192, 192);
+// }
+
+// function setup() {
+//   createCanvas(960, 630);
+//   console.log(width);
+//   console.log(height);
+// }
+
+let canvas;
+let canvasWidth = 960;
+let canvasHeight = 630;
+
 function setup() {
-  setCanvasContainer('canvas-goes-here', 800, 500, true);
-  background(192, 192, 192);
+  canvas = createCanvas(canvasWidth, canvasHeight, true);
+  canvas.parent('canvas-goes-here');
+  drawInitialContent();
 }
 
 function draw() {
@@ -124,3 +150,28 @@ function draw() {
   fill(207, 104, 104, 150);
   rect(610, 355, 30, 40);
 }
+
+function drawInitialContent() {
+  background(192, 192, 192);
+}
+
+function windowResized() {
+  let newCanvasWidth = select('#canvas-goes-here').width;
+  let newCanvasHeight = newCanvasWidth * (canvasHeight / canvasWidth);
+  resizeCanvas(newCanvasWidth, newCanvasHeight);
+  drawInitialContent();
+}
+
+// function drawInitialContent() {
+//   background(192, 192, 192);
+// }
+
+// function windowResized() {
+//   let newCanvasWidth = select('#canvas-goes-here').width;
+//   let newCanvasHeight = select('#canvas-goes-here').height;
+//   resizeCanvas(newCanvasWidth, newCanvasHeight);
+//   drawInitialContent();
+// }
+// function windowResized() {
+//   resizeCanvas(windowWidth, windowHeight);
+// }
