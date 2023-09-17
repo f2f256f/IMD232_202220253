@@ -8,8 +8,6 @@ function draw() {
   colorMode(RGB);
   noStroke();
   rectMode(CORNER);
-  fill(255);
-  strokeWeight(1);
 
   fill(27, 35, 53); //floor
 
