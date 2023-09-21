@@ -1,52 +1,54 @@
+// let x;
+// let y;
 let pos;
+// let xAdd = 5;
+// let yAdd = 3;
 let vel;
+let radius = 50;
 
 function setup() {
   setCanvasContainer('canvas', 3, 2, true);
-  background('salmon');
-  pos = createVector(random(width), random(height));
-  vel = createVector(0, 0);
-  acc = p5.Vector.random2D();
-  acc.mult(0.1);
-  console.log('pos', pos);
-  console.log('vel', vel);
-  console.log('acc', acc);
-  console.log('velMag', vel.mag());
-  console.log('accMag', acc.mag());
+  background('white');
+  // 1. 변수 초기값 할당
+  // x = width / 2;
+  // y = height / 2;
+  // 2. 백터: 초기값 할당
+  pos = createVector(width / 2, height / 2);
+  vel = createVector(5, 3);
 }
 
 function draw() {
-  background('salmon');
-  update();
-  checkEdges();
-  display();
-  console.log('velMag', vel.mag());
-  console.log('accMag', acc.mag());
-}
+  background('white');
+  //1. 변수: 위치 업데이트
+  // x += xAdd;
+  // y += yAdd;
 
-function update() {
-  acc = p5.Vector.random2D();
-  acc.mult(1);
-  vel.add(acc);
-  vel.limit(10);
+  //2. 백터: 초기값 할당
   pos.add(vel);
-}
 
-function checkEdges() {
+  // 1. 변수: 화면 밖으로 나가면 다시 화면 안으로 들이기
+  // if (x < 0) {
+  //   x += width;
+  // } else if (x >= widht) {
+  //   x -= width;
+  // }
+  // if (y < 0) {
+  //   y += height;
+  // } else if (y >= height) {
+  //   y -= height;
+  // }
+
+  // 2. 백터: 화면 밖으로 나가면 다시 화면 안으로 들이기
   if (pos.x < 0) {
-    pos.x = width;
-  } else if (pos.x > width) {
-    pos.x = 0;
+    pos.x += width;
+  } else if (pos.x >= width) {
+    pos.x -= width;
   }
   if (pos.y < 0) {
-    pos.y = height;
-  } else if (pos.y > height) {
-    pos.y = 0;
+    pos.y += height;
+  } else if (pos.y >= height) {
+    pos.y -= height;
   }
-}
-
-function display() {
-  noStroke();
-  fill('cornsilk');
-  ellipse(pos.x, pos.y, 50);
+  // 1. 변수: x, y, diameter = 2 * radius
+  ellipse(pos.x, pos.y, 2 * radius);
 }
