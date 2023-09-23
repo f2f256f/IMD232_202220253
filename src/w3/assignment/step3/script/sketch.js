@@ -28,7 +28,7 @@ function update() {
       clickPos.set(mouseX, mouseY);
       let dir = p5.Vector.sub(pos, clickPos);
       dir.normalize();
-      dir.mult(10); // 원을 밀어내는 힘 설정
+      dir.mult(10);
       vel = dir;
     }
   } else {
