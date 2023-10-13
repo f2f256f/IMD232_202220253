@@ -1,20 +1,31 @@
-let posX;
-let posY;
-let posXAdd = 3;
-let posYAdd = -2;
+let ball;
+let ball2;
+let gravity;
+let wind;
 
 function setup() {
   setCanvasContainer('canvas', 3, 2, true);
-  background(255);
-  posX = width / 2;
-  posY = height / 2;
-  ellipse(posX, posY, 50);
+  ball = new Mover(width / 3, 0, 50);
+  ball2 = new Mover((2 * width) / 3, 0, 10);
+  gravity = createVector(0, 0.1);
+  wind = createVector(-1, 0);
 }
 
 function draw() {
-  background(255);
-  //계산을 그림보다 먼저하는게 좋음
-  posX += posXAdd;
-  posY += posYAdd;
-  ellipse(posX, posY, 50);
+  let g = p5.Vector.mult(gravity, ball.mass);
+  ball.applyForce(g);
+  let g2 = p5.Vector.mult(gravity, ball2.mass);
+  ball2.applyForce(g2);
+  if (mouseIsPressed) {
+    ball.applyForce(wind);
+    ball2.applyForce(wind);
+  }
+  ball.update();
+  ball2.update();
+  ball.edgeBounce();
+  ball2.edgeBounce();
+  background('salmon');
+  fill('white');
+  ball.display();
+  ball2.display();
 }

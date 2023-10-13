@@ -1,60 +1,41 @@
-let pos;
-let vel;
-let acc;
-let radius = 25;
+let ball;
+let ball2;
+let gravity;
+let wind;
+let att;
 
 function setup() {
   setCanvasContainer('canvas', 3, 2, true);
-  background(255);
-  pos = createVector(width / 2, height / 2);
-  vel = createVector(0, 0);
-  acc = createVector();
-  console.log(pos);
-  console.log(vel);
-  ellipse(pos.x, pos.y, 50);
+  ball = new Mover(width / 3, 0, 10);
+  ball2 = new Mover((2 * width) / 3, 0, 10);
+  gravity = createVector(0, 0.1);
+  wind = createVector(-1, 0);
+  att = new Attractor(width / 2, height / 2, 100);
 }
 
 function draw() {
-  background(255);
-  update();
-  infiniteEdge();
-  display();
-
-  // if (pos.x < 0) {
-  //   vel.x *= -1;
-  // } else if (pos.x > width) {
-  //   vel.x *= -1;
+  // let g = p5.Vector.mult(gravity, ball.mass);
+  // ball.applyForce(g);
+  // let g2 = p5.Vector.mult(gravity, ball2.mass);
+  // ball2.applyForce(g2);
+  // if (mouseIsPressed) {
+  //   ball.applyForce(wind);
+  //   ball2.applyForce(wind);
   // }
+  // let force1 = att.attract(ball);
+  // ball.applyForce(force1);
+  // let force2 = att.attract(ball2);
+  // ball2.applyForce(force2);
+  ball.applyForce(att.attract(ball));
+  ball2.applyForce(att.attract(ball2));
 
-  // if (pos.x - radius < 0 || pos.x + radius > width) {
-  //   vel.x *= -1;
-  // }
-  // if (pos.y - radius < 0 || pos.y + radius > height) {
-  //   vel.y *= -1;
-  // }
-}
-function display() {
-  fill('red');
-  ellipse(pos.x, pos.y, 2 * radius);
-}
-
-function update() {
-  acc = p5.Vector.random2D();
-  acc.mult(0.5);
-  vel.add(acc);
-  vel.limit(5);
-  pos.add(vel);
-}
-
-function infiniteEdge() {
-  if (pos.x < 0) {
-    pos.x = width;
-  } else if (pos.x > width) {
-    pos.x = 0;
-  }
-  if (pos.y < 0) {
-    pos.y = height;
-  } else if (pos.y > height) {
-    pos.y = 0;
-  }
+  ball.update();
+  ball2.update();
+  // ball.edgeBounce();
+  // ball2.edgeBounce();
+  background('salmon');
+  fill('white');
+  ball.display();
+  ball2.display();
+  att.display();
 }
