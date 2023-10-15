@@ -1,3 +1,4 @@
+// sketch.js
 let pendulum1;
 let pendulum2;
 let gravity;
@@ -14,6 +15,7 @@ function setup() {
     20
   );
 
+  // 추가: 다음 Pendulum 설정
   pendulum1.setNextPendulum(pendulum2);
 
   gravity = createVector(0, 0.5);

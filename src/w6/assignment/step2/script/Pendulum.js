@@ -1,3 +1,4 @@
+// Pendulum.js
 class Pendulum {
   constructor(x, y, length, angle, rad) {
     this.angle = angle;
