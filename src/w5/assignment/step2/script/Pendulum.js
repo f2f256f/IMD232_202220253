@@ -94,7 +94,6 @@ class Pendulum {
     this.pos.set(other.ballPos.x, other.ballPos.y);
   }
 
-  // 추가: 다음 Pendulum을 설정하는 메서드
   setNextPendulum(nextPendulum) {
     this.nextPendulum = nextPendulum;
   }
