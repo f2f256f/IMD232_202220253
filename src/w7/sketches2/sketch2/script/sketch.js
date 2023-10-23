@@ -1,29 +1,24 @@
-let emitter;
-let particle;
-let g;
+let traffic;
+
+let debug = true;
 
 function setup() {
   setCanvasContainer('canvas', 2, 1, true);
 
-  colorMode(HSL, 360, 100, 100);
-  particle = new Ball(width / 2, 0, 0, 0, 1, 0, 100, 50);
+  colorMode(HSL, 360, 100, 100, 100);
 
-  emitter = new Emitter(width / 2, height);
-
-  g = createVector(0, 0.1);
-  background(255);
+  traffic = new Traffic();
+  for (let n = 0; n < 20; n++) {
+    traffic.addVehicle(random(width), random(height)); //20개는 있고 시작하기
+  }
+  background(0, 100, 100);
 }
 
 function draw() {
-  background(255);
-  const scaleG = p5.Vector.mult(g, particle.mass);
-  particle.applyForce(scaleG);
-  particle.update();
-  particle.display();
+  background(0, 100, 100);
+  traffic.run();
+}
 
-  emitter.createBall();
-  emitter.applyGravity(g);
-  emitter.update();
-  emitter.display();
-  console.log(emitter.balls.length);
+function mouseDragged() {
+  traffic.addVehicle(mouseX, mouseY);
 }
