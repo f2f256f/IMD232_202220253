@@ -117,10 +117,6 @@ function setup() {
 
   Composite.add(world, mouseConstraint);
 
-  console.log('ropeA', ropeA.bodies);
-  console.log('ropeB', ropeB);
-  console.log('ropeC', ropeC.bodies);
-
   background('white');
   Runner.run(runner, engine);
 }
